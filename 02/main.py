@@ -1,6 +1,6 @@
 import re
 
-with open('input.txt') as f:
+with open("input.txt") as f:
     lines = [line.rstrip() for line in f]
 
 n_valid = 0
@@ -22,7 +22,7 @@ for line in lines:
     high_num = int(regex.group(2))
     char = regex.group(3)
     string = regex.group(4)
-    if (string[low_num-1] == char) ^ (string[high_num-1] == char):
+    if (string[low_num - 1] == char) ^ (string[high_num - 1] == char):
         n_valid += 1
 
 print(n_valid)
