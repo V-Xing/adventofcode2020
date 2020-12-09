@@ -10,7 +10,7 @@ for n in lines[:n_prev]:
     q.append(n)
 
 for n in lines[n_prev:]:
-    if any([n - k in q for k in q]):
+    if any([(n - k != k) and (n - k in q) for k in q]):
         q.popleft()
         q.append(n)
     else:
