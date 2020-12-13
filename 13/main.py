@@ -33,13 +33,17 @@ def euclid(a, b):
 assert all([gcd(a, b) == 1 for (a, b) in zip(buses, buses) if a != b])
 
 # Chinese remainder theorem
+# Find x s.t. x%n=-p for p, n in pos, buses
+# x = sum_i -p_i * (prod_{k!=i} n_k) * invmod(prod_{k!=i} n_k, n_i) [mod prod_i n_i]
+# With Python < 3.8, implement invmod with Euclid algorithm
 x = 0
-for (i, n) in enumerate(buses):
+for (p, n) in zip(pos, buses):
     temp = prod // n
     r, u, v = euclid(temp, n)
     assert r == 1
-    x += (-pos[i]) * temp * u
+    x += (-p) * temp * u
 
+# Find smallest positive candidate
 if x < 0:
     while x < 0:
         x += prod
