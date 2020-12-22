@@ -38,13 +38,10 @@ def part1(q1, q2):
 
 def rec_combat(q1, q2):
     seen = set()
-    ends_seen = False
     while q1 and q2:
         state = (tuple(q1), tuple(q2))
         if state in seen:
-            game_winner = 1
-            ends_seen = True
-            break
+            return 1, q1, q2
         else:
             seen.add(state)
 
@@ -65,9 +62,7 @@ def rec_combat(q1, q2):
             q2.append(c2)
             q2.append(c1)
 
-    if not ends_seen:
-        game_winner = 2 if q2 else 1
-
+    game_winner = 2 if q2 else 1
     return game_winner, q1, q2
 
 
